@@ -145,11 +145,11 @@ const Home: React.FC<IHomeProps> = ({
           <Loader />
         ) : (
           <div className={clsx({
-            'grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3': !_isEmpty(processedCharacters),
-            'flex justify-center': _isEmpty(processedCharacters),
+            'grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-10': !_isEmpty(processedCharacters),
+            'flex justify-center mb-10': _isEmpty(processedCharacters),
           })}>
             {_isEmpty(processedCharacters) ? (
-              <p className='text-gray-50 mb-10'>
+              <p className='text-gray-50'>
                 No characters found
                 {planet !== DEFAULT_PLANET && (
                   <span>
