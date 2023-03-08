@@ -1,0 +1,2 @@
+export const CHARACTERS_PER_PAGE = 10
+export const DEFAULT_CHARACTER_PAGE = 1
