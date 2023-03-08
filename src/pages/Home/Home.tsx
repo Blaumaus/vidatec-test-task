@@ -9,6 +9,7 @@ import _pickBy from 'lodash/pickBy'
 import _filter from 'lodash/filter'
 import _includes from 'lodash/includes'
 import _replace from 'lodash/replace'
+import _isEmpty from 'lodash/isEmpty'
 
 import Title from '../../components/Title'
 import Pagination from '../../ui/Pagination'
@@ -17,6 +18,7 @@ import Loader from '../../ui/Loader'
 
 import { CHARACTERS_PER_PAGE } from '../../redux/constants'
 import { ICharacter, IPlanet } from '../../redux/adapters/ui'
+import clsx from 'clsx'
 
 interface IOrderOption {
   label: string
@@ -142,40 +144,60 @@ const Home: React.FC<IHomeProps> = ({
         {isLoading ? (
           <Loader />
         ) : (
-          <div className='grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
-            {_map(processedCharacters, (char: ICharacter) => (
-              <div
-                key={char.name}
-                className='flex gap-5 relative bg-gray-750 py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg border-gray-750 border-2 hover:border-yellow-500'
-              >
-                {/* Image placeholder */}
-                <div className='h-32 w-32 bg-gray-600 rounded-md' />
-                <div>
-                  <p className='text-gray-300 text-sm font-medium uppercase tracking-wide'>
-                    Name:
+          <div className={clsx({
+            'grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3': !_isEmpty(processedCharacters),
+            'flex justify-center': _isEmpty(processedCharacters),
+          })}>
+            {_isEmpty(processedCharacters) ? (
+              <p className='text-gray-50 mb-10'>
+                No characters found
+                {planet !== DEFAULT_PLANET && (
+                  <span>
+                    , maybe try to
                     {' '}
-                    {char.name}
-                  </p>
-                  <p className='text-gray-300 mt-1 text-sm font-medium uppercase tracking-wide'>
-                    Gender:
+                    <span className='text-yellow-500 cursor-pointer' onClick={() => setPlanet(DEFAULT_PLANET)}>
+                      reset
+                    </span>
                     {' '}
-                    {char.gender}
-                  </p>
-                  <p className='text-gray-300 mt-1 text-sm font-medium uppercase tracking-wide'>
-                    Planet:
-                    {' '}
-                    {planets[char.homeworld]?.name || 'Loading...'}
-                  </p>
-                  <div
-                    className='text-gray-300 mt-1 italic cursor-pointer hover:text-gray-200'
-                    aria-label='Get more details about this character (popup will be shown)'
-                    onClick={() => alert(getCharDetailsString(char))}
-                  >
-                    Details...
+                    your planet.
+                  </span>
+                )}
+              </p>
+            ) : (
+              _map(processedCharacters, (char: ICharacter) => (
+                <div
+                  key={char.name}
+                  className='flex gap-5 relative bg-gray-750 py-5 px-4 sm:py-6 sm:px-6 shadow rounded-lg border-gray-750 border-2 hover:border-yellow-500'
+                >
+                  {/* Image placeholder */}
+                  <div className='h-32 w-32 bg-gray-600 rounded-md' />
+                  <div>
+                    <p className='text-gray-300 text-sm font-medium uppercase tracking-wide'>
+                      Name:
+                      {' '}
+                      {char.name}
+                    </p>
+                    <p className='text-gray-300 mt-1 text-sm font-medium uppercase tracking-wide'>
+                      Gender:
+                      {' '}
+                      {char.gender}
+                    </p>
+                    <p className='text-gray-300 mt-1 text-sm font-medium uppercase tracking-wide'>
+                      Planet:
+                      {' '}
+                      {planets[char.homeworld]?.name || 'Loading...'}
+                    </p>
+                    <div
+                      className='text-gray-300 mt-1 italic cursor-pointer hover:text-gray-200'
+                      aria-label='Get more details about this character (popup will be shown)'
+                      onClick={() => alert(getCharDetailsString(char))}
+                    >
+                      Details...
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         )}
         <Pagination
