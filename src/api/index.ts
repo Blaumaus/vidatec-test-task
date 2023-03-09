@@ -1,6 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak, no-unused-vars */
 import axios from 'axios'
 import Debug from 'debug'
+import { ICharacter, IPlanet } from '../redux/adapters/ui'
 
 const debug = Debug('sw-test-task:api')
 const baseURL = process.env.REACT_APP_API_URL
@@ -12,7 +13,7 @@ const api = axios.create({
   baseURL,
 })
 
-export const getCharacters: (page: number) => Promise<any> = (page) =>
+export const getCharacters: (page: number) => Promise<ICharacter> = (page) =>
   api
     .get(`people/?page=${page}`)
     .then((response) => response.data)
@@ -21,7 +22,7 @@ export const getCharacters: (page: number) => Promise<any> = (page) =>
       throw error.response.data
     })
 
-export const getPlanet: (id: number) => Promise<any> = (id) =>
+export const getPlanet: (id: number) => Promise<IPlanet> = (id) =>
   api
     .get(`planets/${id}`)
     .then((response) => response.data)
