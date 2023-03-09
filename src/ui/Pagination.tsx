@@ -26,9 +26,9 @@ const Pagination: React.FC<IPagination> = ({
           <button
             type='button'
             onClick={() => setPage(page - 1)}
-            className='pt-4 pr-1 inline-flex items-center text-sm font-medium dark:group-hover:text-gray-400 group-hover:text-gray-700 dark:text-gray-300 text-gray-500'
+            className='pt-4 pr-1 inline-flex items-center text-sm font-medium group-hover:text-gray-400 text-gray-300'
           >
-            <ArrowLongLeftIcon className='mr-3 h-5 w-5 dark:group-hover:text-gray-400 group-hover:text-gray-700 dark:text-gray-300 text-gray-500 transition-none' aria-hidden='true' />
+            <ArrowLongLeftIcon className='mr-3 h-5 w-5 group-hover:text-gray-400 text-gray-300 transition-none' aria-hidden='true' />
             Previous
           </button>
         )}
@@ -38,7 +38,7 @@ const Pagination: React.FC<IPagination> = ({
           _map(paginationRange, (item, index) => {
             if (item === DOTS) {
               return (
-                <span className='border-transparent text-gray-500 dark:text-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium' key={item + index}>
+                <span className='border-transparent text-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium' key={item + index}>
                   {DOTS}
                 </span>
               )
@@ -50,8 +50,8 @@ const Pagination: React.FC<IPagination> = ({
                 type='button'
                 onClick={() => setPage(item)}
                 className={cx({
-                  'border-yellow-500 text-yellow-600 dark:text-yellow-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': item === page,
-                  'border-transparent text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-400 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': item !== page,
+                  'border-yellow-500 text-yellow-400 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': item === page,
+                  'border-transparent text-gray-300 hover:text-gray-400 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium': item !== page,
                 })}
               >
                 {item}
@@ -65,10 +65,10 @@ const Pagination: React.FC<IPagination> = ({
           <button
             type='button'
             onClick={() => setPage(page + 1)}
-            className='pt-4 pl-1 inline-flex items-center text-sm font-medium dark:group-hover:text-gray-400 group-hover:text-gray-700 dark:text-gray-300 text-gray-500'
+            className='pt-4 pl-1 inline-flex items-center text-sm font-medium group-hover:text-gray-400 text-gray-300'
           >
             Next
-            <ArrowLongRightIcon className='ml-3 h-5 w-5 dark:group-hover:text-gray-400 group-hover:text-gray-700 dark:text-gray-300 text-gray-500 transition-none' aria-hidden='true' />
+            <ArrowLongRightIcon className='ml-3 h-5 w-5 group-hover:text-gray-400 text-gray-300 transition-none' aria-hidden='true' />
           </button>
         )}
       </div>

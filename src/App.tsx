@@ -10,6 +10,7 @@ import routes from './routes'
 
 const Home = lazy(() => import('./pages/Home'))
 
+// In case the route takes more than 1 second to load, we display a loader
 const Fallback = () => {
   const [showLoader, setShowLoader]: [boolean, Function] = useState(false)
 
@@ -28,7 +29,7 @@ const Fallback = () => {
   }, [])
 
   return (
-    <div className={cx('bg-gray-50 dark:bg-gray-800 min-h-page')}>
+    <div className={cx('bg-gray-800 min-h-page')}>
       {showLoader && (
         <Loader />
       )}
@@ -37,6 +38,8 @@ const Fallback = () => {
 }
 
 const App = () => {
+  // I decided to use some kind of a loader to display it to the user while the React app is loading
+  // It's based in the public/index.html and is removed on the first render of the App component
   useEffect(() => {
     const loaderEl = document.getElementById('loader')
 

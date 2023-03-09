@@ -36,6 +36,7 @@ const DEFAULT_PLANET = 'All planets'
 
 const UNKNOWN_VALUES = ['unknown', 'n/a', 'none']
 
+// Parsing the character's details into a string for the alert dialog.
 const getCharDetailsString = (char: ICharacter) => {
   let result = char.name
 
@@ -65,8 +66,6 @@ const getCharDetailsString = (char: ICharacter) => {
   return result
 }
 
-// create interface for Home props
-
 interface IHomeProps {
   characters: ICharacter[]
   planets: IPlanet[]
@@ -79,11 +78,14 @@ interface IHomeProps {
 const Home: React.FC<IHomeProps> = ({
   characters, planets, setCurrentPage, currentPage, totalCount, isLoading,
 }) => {
+  // The order in which the characters are displayed
   const [order, setOrder] = useState<IOrderOption>(
     _find(ORDER_OPTIONS, (item) => item.value === DEFAULT_ORDER)!,
   )
+  // The planet that the characters are from
   const [planet, setPlanet] = useState(DEFAULT_PLANET)
 
+  // Before displaying the characters, we need to process them (i.e. apply the filters and order from above)
   const processedCharacters = useMemo(() => {
     let currentCharacters = characters[currentPage]
 
@@ -101,6 +103,7 @@ const Home: React.FC<IHomeProps> = ({
     return _orderBy(currentCharacters, ['name'], [order.value])
   }, [characters, currentPage, planets, order, planet])
 
+  // Postprocessed planets for the planet dropdown (we only display the planets of the characters shown on the current page)
   const availablePlanets = useMemo(() => {
     // @ts-ignore
     const currentCharacters: ICharacter[] = characters[currentPage]

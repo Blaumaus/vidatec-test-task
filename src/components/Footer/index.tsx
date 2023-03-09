@@ -5,7 +5,7 @@ import routes from '../../routes'
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-800 dark:bg-gray-900'>
+    <footer className='bg-gray-900'>
       <div className='max-w-7xl mx-auto py-8 px-4 overflow-hidden sm:px-6 lg:px-8'>
         <nav className='-mx-5 -my-2 flex flex-wrap justify-center' aria-label='Footer'>
           <div className='px-5 py-2'>
