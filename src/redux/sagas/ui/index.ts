@@ -8,8 +8,11 @@ import pageUpdateListener from './page_update_listener'
 
 function* mainUISaga() {
   yield fork(initialise)
+  // @ts-ignore
   yield takeEvery(types.LOAD_CHARACTERS, loadCharacters)
+  // @ts-ignore
   yield takeEvery(types.LOAD_PLANETS, loadPlanets)
+  // @ts-ignore
   yield takeEvery(types.SET_CURRENT_PAGE, pageUpdateListener)
 }
 

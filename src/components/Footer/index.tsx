@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { Link } from 'react-router-dom'
 
-import routes from 'routes'
+import routes from '../../routes'
 
 const Footer = () => {
   return (

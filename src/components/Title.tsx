@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import _isEmpty from 'lodash/isEmpty'
 import PropTypes from 'prop-types'
 
-const Title = ({ title, children }) => {
+const Title: React.FC<{ title?: string, children: React.ReactNode }> = ({ title, children }) => {
   if (_isEmpty(title)) {
     return (
       <>

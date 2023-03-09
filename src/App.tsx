@@ -4,15 +4,14 @@ import React, {
 import { Switch, Route } from 'react-router-dom'
 import cx from 'clsx'
 
-import Footer from 'components/Footer'
-import Loader from 'ui/Loader'
+import Footer from './components/Footer'
+import Loader from './ui/Loader'
+import routes from './routes'
 
-import routes from 'routes'
-
-const Home = lazy(() => import('pages/Home'))
+const Home = lazy(() => import('./pages/Home'))
 
 const Fallback = () => {
-  const [showLoader, setShowLoader] = useState(false)
+  const [showLoader, setShowLoader]: [boolean, Function] = useState(false)
 
   useEffect(() => {
     let isMounted = true
@@ -55,7 +54,6 @@ const App = () => {
       <Suspense fallback={<Fallback />}>
         <Switch>
           <Route path={routes.home} component={Home} exact />
-          {/* <Route path='*' component={NotFound} /> */}
         </Switch>
       </Suspense>
       <Footer />

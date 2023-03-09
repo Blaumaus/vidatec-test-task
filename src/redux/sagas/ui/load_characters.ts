@@ -2,7 +2,7 @@ import { put, call } from 'redux-saga/effects'
 import _toString from 'lodash/toString'
 import Debug from 'debug'
 
-import UIActions from 'redux/actions/ui'
+import UIActions from '../../actions/ui'
 
 import {
   getCharacters,
@@ -10,7 +10,13 @@ import {
 
 const debug = Debug('sw-test-task:rx:s:load-characters')
 
-export default function* loadCharacters({ payload: { page } }) {
+interface ILoadCharacters {
+  payload: {
+    page: number
+  }
+}
+
+export default function* loadCharacters({ payload: { page } }: ILoadCharacters) {
   try {
     yield put(UIActions.setCharactersLoading(true))
 
@@ -20,7 +26,6 @@ export default function* loadCharacters({ payload: { page } }) {
 
     yield put(UIActions.setCharactersCount(count))
     yield put(UIActions.setCharacters(results, page))
-    yield put(UIActions.loadPlanets(results))
   } catch (e) {
     yield put(UIActions.setCharactersError(_toString(e)))
     debug('failed to load characters: %s', e)

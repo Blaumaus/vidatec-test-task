@@ -1,4 +1,4 @@
-export const types = {
+export const types: { [key: string]: string } = {
   LOAD_CHARACTERS: 'UI_LOAD_CHARACTERS',
   SET_CHARACTERS: 'UI_SET_CHARACTERS',
   SET_CHARACTERS_ERROR: 'UI_SET_CHARACTERS_ERROR',

@@ -3,8 +3,8 @@ import _toString from 'lodash/toString'
 import _isEmpty from 'lodash/isEmpty'
 import Debug from 'debug'
 
-import UIActions from 'redux/actions/ui'
-import { planetsAdapter } from 'redux/adapters/ui'
+import UIActions from '../../actions/ui'
+import { planetsAdapter } from '../../adapters/ui'
 
 import {
   getPlanets, customRequest,

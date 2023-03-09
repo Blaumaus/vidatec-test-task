@@ -1,4 +1,4 @@
-/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable implicit-arrow-linebreak, no-unused-vars */
 import axios from 'axios'
 import Debug from 'debug'
 
@@ -9,7 +9,7 @@ const api = axios.create({
   baseURL,
 })
 
-export const getCharacters = (page) =>
+export const getCharacters: (page: number) => Promise<any> = (page) =>
   api
     .get(`people/?page=${page}`)
     .then((response) => response.data)
@@ -18,7 +18,7 @@ export const getCharacters = (page) =>
       throw error.response.data
     })
 
-export const getPlanet = (id) =>
+export const getPlanet: (id: number) => Promise<any> = (id) =>
   api
     .get(`planets/${id}`)
     .then((response) => response.data)
@@ -36,7 +36,7 @@ export const getPlanets = () =>
       throw error.response.data
     })
 
-export const customRequest = (url, method, data) =>
+export const customRequest: (url: string, method: string, data?: any) => Promise<any> = (url, method, data) =>
   axios[method](url, data)
     .then((response) => response.data)
     .catch((error) => {

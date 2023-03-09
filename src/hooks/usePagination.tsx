@@ -1,19 +1,19 @@
 import { useMemo } from 'react'
-import { CHARACTERS_PER_PAGE } from 'redux/constants'
+import { CHARACTERS_PER_PAGE } from '../redux/constants'
 
 export const DOTS = '...'
 
-const range = (start, end) => {
+const range = (start: number, end: number) => {
   const length = end - start + 1
   return Array.from({ length }, (_, idx) => idx + start)
 }
 
 export const usePagination = (
-  totalCount,
-  currentPage,
-  siblingCount = 1,
-  pageSize = CHARACTERS_PER_PAGE,
-) => {
+  totalCount: number,
+  currentPage: number,
+  siblingCount: number = 1,
+  pageSize: number = CHARACTERS_PER_PAGE,
+): any[] => {
   const paginationRange = useMemo(() => {
     const totalPageCount = Math.ceil(totalCount / pageSize)
 

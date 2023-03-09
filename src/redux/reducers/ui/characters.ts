@@ -1,7 +1,17 @@
-import { types } from 'redux/actions/ui/types'
-import { DEFAULT_CHARACTER_PAGE } from 'redux/constants'
+import { types } from '../../actions/ui/types'
+import { DEFAULT_CHARACTER_PAGE } from '../../constants'
 
-const getInitialState = () => {
+interface ICharacterReducer {
+  characters: {
+    [key: number]: any
+  }
+  isLoading: boolean
+  error: string | null
+  currentPage: number
+  totalCount: number
+}
+
+const getInitialState: () => ICharacterReducer = () => {
   return {
     characters: {}, // { 1: {} }; i.e. per page
     isLoading: true,

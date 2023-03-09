@@ -1,11 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React, { memo } from 'react'
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/solid'
 import _map from 'lodash/map'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
-import { usePagination, DOTS } from 'hooks/usePagination'
 
-const Pagination = ({
+import { usePagination, DOTS } from '../hooks/usePagination'
+
+interface IPagination {
+  page: number
+  setPage: (page: number) => void
+  pageAmount: number
+  total: number
+}
+
+const Pagination: React.FC<IPagination> = ({
   page, setPage, pageAmount, total,
 }) => {
   const paginationRange = usePagination(total, page)

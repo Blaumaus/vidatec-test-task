@@ -1,8 +1,8 @@
 import { put } from 'redux-saga/effects'
 import Debug from 'debug'
 
-import UIActions from 'redux/actions/ui'
-import { DEFAULT_CHARACTER_PAGE } from 'redux/constants'
+import UIActions from '../../actions/ui'
+import { DEFAULT_CHARACTER_PAGE } from '../../constants'
 
 const debug = Debug('sw-test-task:rx:s:initialise')
 

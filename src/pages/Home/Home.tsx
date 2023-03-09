@@ -10,6 +10,7 @@ import _filter from 'lodash/filter'
 import _includes from 'lodash/includes'
 import _replace from 'lodash/replace'
 import _isEmpty from 'lodash/isEmpty'
+import cx from 'clsx'
 
 import Title from '../../components/Title'
 import Pagination from '../../ui/Pagination'
@@ -18,7 +19,6 @@ import Loader from '../../ui/Loader'
 
 import { CHARACTERS_PER_PAGE } from '../../redux/constants'
 import { ICharacter, IPlanet } from '../../redux/adapters/ui'
-import clsx from 'clsx'
 
 interface IOrderOption {
   label: string
@@ -144,10 +144,12 @@ const Home: React.FC<IHomeProps> = ({
         {isLoading ? (
           <Loader />
         ) : (
-          <div className={clsx({
-            'grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-10': !_isEmpty(processedCharacters),
-            'flex justify-center mb-10': _isEmpty(processedCharacters),
-          })}>
+          <div
+            className={cx({
+              'grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-10': !_isEmpty(processedCharacters),
+              'flex justify-center mb-10': _isEmpty(processedCharacters),
+            })}
+          >
             {_isEmpty(processedCharacters) ? (
               <p className='text-gray-50'>
                 No characters found

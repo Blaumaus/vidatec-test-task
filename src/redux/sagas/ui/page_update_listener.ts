@@ -1,8 +1,14 @@
 import { put, select } from 'redux-saga/effects'
 
-import UIActions from 'redux/actions/ui'
+import UIActions from '../../actions/ui'
 
-export default function* loadCharacters({ payload: { currentPage } }) {
+interface IPageUpdateListener {
+  payload: {
+    currentPage: number
+  }
+}
+
+export default function* pageUpdateListener({ payload: { currentPage } }: IPageUpdateListener) {
   const characters = yield select(state => state.ui.characters.characters)
 
   if (characters[currentPage]) {

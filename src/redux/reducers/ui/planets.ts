@@ -1,6 +1,13 @@
-import { types } from 'redux/actions/ui/types'
+import { types } from '../../actions/ui/types'
 
-const getInitialState = () => {
+interface IPlanetReducer {
+  planets: {
+    [key: string]: any
+  }
+  error: string | null
+}
+
+const getInitialState: () => IPlanetReducer = () => {
   return {
     planets: {}, // { 'https://swapi.dev/api/planets/1/': { ... } }
     error: null,

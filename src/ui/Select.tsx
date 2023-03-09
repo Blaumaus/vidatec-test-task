@@ -1,13 +1,26 @@
-import { Fragment, memo } from 'react'
+/* eslint-disable no-unused-vars */
+import React, { Fragment, memo } from 'react'
 import cx from 'clsx'
 import PropTypes from 'prop-types'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import _map from 'lodash/map'
 
-const Select = ({
+interface ISelect {
+  title: string
+  label: string
+  className?: string
+  items: any[]
+  labelExtractor?: (item: any, index: number) => string
+  keyExtractor?: (item: any, index: number) => string
+  iconExtractor?: (item: any, index: number) => string
+  onSelect: (item: any) => void
+}
+
+const Select: React.FC<ISelect> = ({
   title, label, className, items, labelExtractor, keyExtractor, iconExtractor, onSelect,
 }) => (
+  // @ts-ignore
   <Listbox className={className} value={title} onChange={onSelect}>
     {({ open }) => (
       <>
@@ -96,9 +109,9 @@ Select.propTypes = {
 
 Select.defaultProps = {
   className: '',
-  labelExtractor: null,
-  keyExtractor: null,
-  iconExtractor: null,
+  labelExtractor: undefined,
+  keyExtractor: undefined,
+  iconExtractor: undefined,
   label: '',
   items: [],
 }
